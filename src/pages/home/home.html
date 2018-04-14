@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Meteo</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-card padding>
+    <h1 align="center">Ma super app Météo</h1>
+    <ion-item>
+      <ion-label floating>Entrer le nom d'une ville</ion-label>
+      <ion-input type="string" [(ngModel)]="ville"></ion-input>
+    </ion-item>
+    <button ion-button block color="primary" (tap)="getMeteoVille()">Afficher météo</button><br>
+    <hr>
+
+    <div *ngIf="meteo" style="padding-top: 50px">
+    <h1>{{ meteo.location.name }}</h1>
+        {{ meteo.location.region }}, {{ meteo.location.country }}<br>
+
+    <ion-row>
+      <ion-col col-2>
+        <img class="img-thumb" src="http:{{ meteo.current.condition.icon }}">
+        <br>
+      </ion-col>
+    
+      <ion-col col-10 style="text-align: right; padding-right: 15px;">
+        {{ meteo.current.condition.text }}<br>
+        Température: {{ meteo.current.temp_c }} °C<br>
+        Température résentie:{{ meteo.current.feelslike_c }} °C<br>
+        Vitesse du vent: {{ meteo.current.wind_kph }} Km/h<br>
+        Humidité: {{ meteo.current.humidity }}<br>
+      </ion-col>
+    </ion-row>
+    </div>
+  </ion-card>
+  
+</ion-content>
